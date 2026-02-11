@@ -1,0 +1,91 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nepalify"
+dynamic = ["version"]
+description = "Python library for Nepali date, number, and word formatting"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.8"
+authors = [
+    {name = "Rabin Katel", email = "kattelrabinraja13@gmail.com"}
+]
+keywords = [
+    "nepali",
+    "bikram-sambat",
+    "devanagari",
+    "date-conversion",
+    "nepal",
+    "calendar",
+    "localization"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Software Development :: Internationalization",
+    "Topic :: Software Development :: Localization",
+]
+
+[project.urls]
+Homepage = "https://github.com/ra8in/nepalify"
+Documentation = "https://github.com/ra8in/nepalify#readme"
+Repository = "https://github.com/ra8in/nepalify"
+Issues = "https://github.com/ra8in/nepalify/issues"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "black>=22.0",
+    "flake8>=5.0",
+    "mypy>=0.990",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["nepalify*"]
+
+[tool.setuptools.package-data]
+nepalify = ["dates/data/*.json"]
+
+[tool.setuptools.dynamic]
+version = {attr = "nepalify.version.__version__"}
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"
+
+[tool.coverage.run]
+source = ["nepalify"]
+branch = true
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "if __name__ == .__main__.:",
+    "raise NotImplementedError",
+]
+
+[tool.black]
+line-length = 88
+target-version = ['py38', 'py39', 'py310', 'py311']
+include = '\.pyi?$'
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
